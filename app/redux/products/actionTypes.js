@@ -1,0 +1,5 @@
+export const ADDBOOKS = 'products/addbooks'
+export const FEATURED = 'products/feature'
+export const UPDATEDATA = 'products/updatedata'
+export const UPDATE = 'products/update'
+export const DELETE = 'products/delete'
