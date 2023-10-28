@@ -9,18 +9,18 @@ export default function Home() {
 
   return (
     <>
-      <Navbar/>
-      <main class="py-12 2xl:px-6">
-    <div class="container grid xl:grid-cols-[auto_350px] 2xl:grid-cols-[auto_400px] gap-4 2xl:gap-8">
-        <div class="order-2 xl:-order-1">
-            <div class="flex items-center justify-between mb-12">
-                <h4 class="mt-2 text-xl font-bold">Book List</h4>
+      <Navbar key={1}/>
+      <main className="py-12 2xl:px-6">
+    <div className="container grid xl:grid-cols-[auto_350px] 2xl:grid-cols-[auto_400px] gap-4 2xl:gap-8">
+        <div className="order-2 xl:-order-1">
+            <div className="flex items-center justify-between mb-12">
+                <h4 className="mt-2 text-xl font-bold">Book List</h4>
 
-                <Filter/>
+                <Filter  key={2}/>
             </div>
-             <ProductListing/>
+             <ProductListing  key={3}/>
         </div>
-        <AddProduct/>
+        <AddProduct  key={4}/>
     </div>
 </main>
     </>

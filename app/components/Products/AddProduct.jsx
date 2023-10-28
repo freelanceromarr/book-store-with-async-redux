@@ -69,35 +69,35 @@ return(
             <h4 className="mb-8 text-xl font-bold text-center">Add New Book</h4>
             <form className="book-form">
                 <div className="space-y-2">
-                <label for="name">Book Name</label>
+                <label htmlFor="name">Book Name</label>
                 <input onChange={(e)=>formHandler({...bookState, name: e.target.value})} value={bookState.name} required className="text-input" type="text" id="input-Bookname" name="name" />
                 </div>
 
                 <div className="space-y-2">
-                <label for="category">Author</label>
+                <label htmlFor="category">Author</label>
                 <input onChange={(e)=>formHandler({...bookState, author: e.target.value})} value={bookState.author} required className="text-input" type="text" id="input-Bookauthor" name="author" />
                 </div>
 
                 <div className="space-y-2">
-                <label for="image">Image Url</label>
+                <label htmlFor="image">Image Url</label>
                 <input onChange={(e)=>formHandler({...bookState, image: e.target.value})} value={bookState.image} required className="text-input" type="text" id="input-Bookthumbnail" name="thumbnail" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-8 pb-4">
                 <div className="space-y-2">
-                    <label for="price">Price</label>
+                    <label htmlFor="price">Price</label>
                     <input onChange={(e)=>formHandler({...bookState, price: e.target.value})} value={bookState.price} required className="text-input" type="number" id="input-Bookprice" name="price" />
                 </div>
 
                 <div className="space-y-2">
-                    <label for="quantity">Rating</label>
+                    <label htmlFor="quantity">Rating</label>
                     <input onChange={(e)=>formHandler({...bookState, rating: e.target.value})} value={bookState.rating} required className="text-input" type="number" id="input-Bookrating" name="rating" min="1" max="5" />
                 </div>
                 </div>
 
                 <div className="flex items-center">
                 <input onChange={(e)=>formHandler({...bookState, featured: !bookState.featured})} checked={bookState.featured}  id="input-Bookfeatured" type="checkbox" name="featured" className="w-4 h-4" />
-                <label for="featured" className="ml-2 text-sm"> This is a featured book </label>
+                <label htmlFor="featured" className="ml-2 text-sm"> This is a featured book </label>
                 </div>
                 {bookState.id !=="" ?
                 <button onClick={(e)=>bookUpdateHandler(e)} type="submit" className="submit" id="submit">Update Book</button>:
