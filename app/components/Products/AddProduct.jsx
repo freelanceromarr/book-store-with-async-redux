@@ -2,65 +2,48 @@
 'use client'
 
 import { getProductData } from "@/app/redux/addProduct/addProduct";
-import { addbooks, updateBooks } from "@/app/redux/products/actions";
+import { addBookThunk } from "@/app/redux/thunk/addBook";
+import { updateBookThunk } from "@/app/redux/thunk/updatebook";
 import { useDispatch, useSelector } from "react-redux";
-const IdGenerator = (books)=>{
-   const bookId= books.reduce((bookId, book)=>{
-         return Math.max(parseFloat(bookId),parseFloat(book.id))
-    },0)
-    return parseFloat(bookId) + 1
-}
+
 const AddProduct = ()=>{
 
-    const bookState = useSelector(state=>state.bookForm)
-    const {books} = useSelector(state=>state.books)
+  const bookState = useSelector(state=>state.bookForm);
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
-
-    // console.log(IdGenerator(books));
-        
-    // if (bookState[0]) {
-    //     setInput({
-    //         id: bookState[0].id,
-    //         name: bookState[0].name,
-    //         author: bookState[0].author,
-    //         image: bookState[0].image,
-    //         rating: bookState[0].rating, 
-    //         price: bookState[0].price,
-    //         featured: bookState[0].featured,
-    //     })
-        
-    // }
+  // form data handling
   const formHandler= (book)=>{
     dispatch(getProductData(book))
   }
-  const bookUpdateHandler=(e)=>{
-        e.preventDefault()
-        dispatch(updateBooks(bookState))
-        dispatch(getProductData({
-            "id": "",
-            "name": "",
-            "author": "",
-            "image": "",
-            "rating": "",
-            "price": "",
-            "featured": ""
-          }))
-        
-  }
-  const addBookHandler=(e)=>{
+
+  // handler for adding book @function 
+  const addBookHandler=(e, stateData)=>{
     e.preventDefault();
-    dispatch(addbooks({...bookState, id: IdGenerator(books)}))
+    dispatch(addBookThunk(stateData))
     dispatch(getProductData({
-        "id": "",
-        "name": "",
-        "author": "",
-        "image": "",
-        "rating": "",
-        "price": "",
-        "featured": ""
+      name: "",
+      author: "",
+      image: "",
+      rating: "",
+      price: "",
+      featured: false
+    })) 
+}
+
+ // Handler for updating book @function
+ const bookUpdateHandler=(e, stateData)=>{
+    e.preventDefault()
+    dispatch(updateBookThunk(stateData._id, stateData))
+    dispatch(getProductData({
+        _id: "",
+        name: "",
+        author: "",
+        image: "",
+        rating: "",
+        price: "",
+        featured: false
       }))
-    
+  
 }
 return(
       
@@ -99,9 +82,9 @@ return(
                 <input onChange={(e)=>formHandler({...bookState, featured: !bookState.featured})} checked={bookState.featured}  id="input-Bookfeatured" type="checkbox" name="featured" className="w-4 h-4" />
                 <label htmlFor="featured" className="ml-2 text-sm"> This is a featured book </label>
                 </div>
-                {bookState.id !=="" ?
-                <button onClick={(e)=>bookUpdateHandler(e)} type="submit" className="submit" id="submit">Update Book</button>:
-                <button onClick={(e)=>addBookHandler(e)} type="submit" className="submit" id="submit">Add Book</button>}
+                {bookState._id?
+                <button onClick={(e)=>bookUpdateHandler(e, bookState)} type="submit" className="submit" id="submit">Update Book</button>:
+                <button onClick={(e)=>addBookHandler(e, bookState)} type="submit" className="submit" id="submit">Add Book</button>}
                 
             </form>
             </div>

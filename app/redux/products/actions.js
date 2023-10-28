@@ -1,11 +1,17 @@
 
-import { ADDBOOKS, DELETE, FEATURED, SEARCH, UPDATE, UPDATEDATA } from "./actionTypes"
+import { ADDBOOKS, DELETE, FEATURED, LOADBOOKS, SEARCH, UPDATE, UPDATEDATA } from "./actionTypes"
 
 
-export const addbooks = (books) =>{
+export const loadBooks = (books) =>{
+    return{
+        type: LOADBOOKS,
+        payload: books
+    }
+}
+export const addbooks = (book) =>{
     return{
         type: ADDBOOKS,
-        payload: books
+        payload: book
     }
 }
 export const filterFeaturedBooks = (filter) =>{
@@ -14,10 +20,11 @@ export const filterFeaturedBooks = (filter) =>{
         payload: filter
     }
 }
-export const updateBooks = (bookData) =>{
+export const updateBooks = (bookId, bookData) =>{
     return{
         type: UPDATE,
         payload: {
+            bookId,
             bookData
         }
     }

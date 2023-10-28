@@ -12,6 +12,6 @@ export const POST = async (req, res)=>{
 
     const bookInfo= await req.json();
     const book = await new Books(bookInfo);
-    book.save();
-    return NextResponse.json({message: 'Book added successfully'})
+    const response= await book.save();
+    return NextResponse.json(response)
 }

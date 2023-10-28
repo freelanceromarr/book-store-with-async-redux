@@ -1,13 +1,12 @@
 
 
 const initialState={ 
-    id:"",
     name: "",
     author:  "",
     image:  "",
     rating: "", 
     price:  "",
-    featured: false,
+    featured: false
 }
 // action
 export const getProductData= (product)=>{

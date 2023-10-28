@@ -1,4 +1,5 @@
 export const ADDBOOKS = 'products/addbooks'
+export const LOADBOOKS = 'products/loadbooks'
 export const FEATURED = 'products/feature'
 export const UPDATEDATA = 'products/updatedata'
 export const UPDATE = 'products/update'

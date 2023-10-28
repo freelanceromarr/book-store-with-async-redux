@@ -1,7 +1,7 @@
 const { FEATURED, ALL, SEARCH } = require("./actionTypes");
 
 const initialState = {
-    status: "",
+    status: "all",
     search:""
 }
 

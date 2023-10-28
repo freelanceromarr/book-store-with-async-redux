@@ -1,22 +1,18 @@
-import { ADDBOOKS, DELETE, FEATURED, SEARCH, UPDATE, UPDATEDATA } from "./actionTypes"
+import { ADDBOOKS, DELETE, FEATURED, LOADBOOKS, SEARCH, UPDATE, UPDATEDATA } from "./actionTypes"
 
 const initialState = {
-    books: [{
-        id:1,
-        name: "Life Hurts: A Doctor's Personal Journey Through Anorexia ",
-        author: "Dr Elizabeth McNaught",
-        image: "https://m.media-amazon.com/images/P/B07DZ86WP7.01._SCLZZZZZZZ_SX500_.jpg",
-        rating:3, 
-        price: 14,
-        featured: false
-    },
-    ],
+    books: [],
     featuredBooks: []
 }
 
 const bookReducer = (state=initialState, action) =>{
     const {type, payload} = action;
     switch (type) {
+        case LOADBOOKS:
+            return {
+                ...state,
+                books: [...payload]
+            }
         case ADDBOOKS:
             return {
                 ...state,
@@ -34,8 +30,8 @@ const bookReducer = (state=initialState, action) =>{
             return {
                 ...state,
                 books: state.books.map(book =>{
-                    if (book.id == payload.bookData.id) {
-                        return {...payload.bookData}
+                    if (book._id === payload.bookId) {
+                        return payload.bookData
                     } return book;
                 })
             }
@@ -48,7 +44,7 @@ const bookReducer = (state=initialState, action) =>{
         case DELETE:
             return{
                 ...state,
-                books: state.books.filter(book => book.id!==payload)
+                books: state.books.filter(book => book._id!==payload)
             }
             
     
